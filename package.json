@@ -1,0 +1,22 @@
+{
+  "name": "axis-subscriber-nodejs",
+  "version": "1.0.0",
+  "description": "AXIS Subscriber for Node.js",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/9SQ/axis-subscriber-nodejs.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/9SQ/axis-subscriber-nodejs/issues"
+  },
+  "homepage": "https://github.com/9SQ/axis-subscriber-nodejs#readme",
+  "dependencies": {
+    "websocket": "^1.0.26"
+  }
+}
