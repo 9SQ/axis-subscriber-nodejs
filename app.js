@@ -1,7 +1,7 @@
 const WebSocketClient = require('websocket').client;
 
 var client = new WebSocketClient();
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaGFubmVscyI6WyJqbXgtbWV0ZW9yb2xvZ3kiLCJqbXgtdm9sY2Fub2xvZ3kiLCJqbXgtc2Vpc21vbG9neSJdLCJ1c2VyIjp7ImNvbm5lY3Rpb24iOjAsInR5cGUiOjIsImlkIjoia2VpaWNoaXJvIn0sImV4cCI6MTUzNTc1OTk5OX0.LidGStWuhajcDo8kQtGo61c-sSr5p_17qkG7iYVzeSA";
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaGFubmVscyI6WyJxdWFrZS1vbmUiXSwidXNlciI6eyJjb25uZWN0aW9uIjowLCJ0eXBlIjoyLCJpZCI6ImtlaWljaGlybyJ9LCJleHAiOjE1MzU3NTk5OTl9.p1vcG1jqyLYs70enmU_PRSPtb7GbuntlZ82aS6VWcvk";
 
 var headers = {
     "Authorization": "Bearer " + token
@@ -33,7 +33,7 @@ client.on('connect', function (connection) {
             if (message.utf8Data === "hello") {
                 retrySec = 100;
                 retryCount = 0;
-                console.log("\n-----");
+                console.log("-----");
             } else {
                 // do something...
                 console.log(message.utf8Data + "\n-----");
@@ -68,5 +68,3 @@ function socketConnect() {
 }
 
 socketConnect();
-
-
