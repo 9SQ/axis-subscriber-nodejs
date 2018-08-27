@@ -1,15 +1,14 @@
 const WebSocketClient = require('websocket').client;
+const client = new WebSocketClient();
+const token = process.env.TOKEN;
 
-var client = new WebSocketClient();
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaGFubmVscyI6WyJxdWFrZS1vbmUiXSwidXNlciI6eyJjb25uZWN0aW9uIjowLCJ0eXBlIjoyLCJpZCI6ImtlaWljaGlybyJ9LCJleHAiOjE1MzU3NTk5OTl9.p1vcG1jqyLYs70enmU_PRSPtb7GbuntlZ82aS6VWcvk";
-
-var headers = {
+const headers = {
     "Authorization": "Bearer " + token
 };
 
 var retrySec = 100;
 var retryCount = 0;
-var retryMax = 10;
+const retryMax = 10;
 
 client.on('connectFailed', function (error) {
     console.log('Connect Error: ' + error.toString());
