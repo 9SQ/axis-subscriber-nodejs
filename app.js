@@ -3,7 +3,7 @@ const client = new WebSocketClient();
 const token = process.env.TOKEN;
 
 const headers = {
-    "Authorization": "Bearer " + token
+    'Authorization': `Bearer ${token}`
 };
 
 var retrySec = 100;
@@ -29,20 +29,29 @@ client.on('connect', function (connection) {
 
     connection.on('message', function (message) {
         if (message.type === 'utf8') {
-            if (message.utf8Data === "hello") {
+            if (message.utf8Data === 'hello') {
                 retrySec = 100;
                 retryCount = 0;
-                console.log("-----");
+                console.log('---hello---');
+            } else if (message.utf8Data === 'hb') {
+                // echo back heartbeat string. nothing to do.
             } else {
-                // do something...
-                console.log(message.utf8Data + "\n-----");
+                try {
+                    const data = JSON.parse(message.utf8Data);
+                    // do something...
+                    console.log(data.channel); // <- channel name
+                    console.log(data.message); // <- message body
+                    console.log('-----');
+                } catch (error) {
+                    console.log(error)
+                }
             }
         }
     });
 
     function heartbeat() {
         if (connection.connected) {
-            connection.sendUTF(''.toString());
+            connection.sendUTF('hb');
             setTimeout(heartbeat, 30000);
         }
     }
@@ -54,7 +63,7 @@ function retryConnection() {
     retrySec = retrySec * 2;
     if (retryCount < retryMax) {
         retryCount++;
-        console.log('Retry: ' + retryCount + " (delay " + retrySec + "ms)");
+        console.log(`Retry: ${retryCount} (delay ${retrySec}ms)`);
         setTimeout(socketConnect, retrySec);
     }
     else {
